@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registration</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+body{
+    background:#3b3465;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.container{
+    background:white;
+    width:420px;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,.2);
+}
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+button{
+    width:100%;
+    padding:12px;
+    background:#007BFF;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+button:hover{
+    background:#0056b3;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Event Registration</h2>
+
+<form id="form">
+
+<label>First Name</label>
+<input type="text" id="firstname" required>
+
+<label>Last Name</label>
+<input type="text" id="lastname" required>
+
+<label>Email</label>
+<input type="email" id="email" required>
+
+<label>Password</label>
+<input type="password" id="password" required>
+
+<label>Confirm Password</label>
+<input type="password" id="confirm" required>
+
+<label>Date of Birth</label>
+<input type="date" id="dob" required>
+
+<label>Gender</label>
+
+<select id="gender" required>
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+
+<!-- Added Fields -->
+
+<label>Mobile Number</label>
+<input type="tel" id="mobile" maxlength="10" pattern="[0-9]{10}" placeholder="Enter 10-digit mobile number" required>
+
+<label>Address</label>
+<textarea id="address" rows="3" placeholder="Enter Address" required></textarea>
+
+<label>Pincode</label>
+<input type="text" id="pincode" maxlength="6" pattern="[0-9]{6}" placeholder="Enter Pincode" required>
+
+<button type="submit">Register</button>
+
+</form>
+
+</div>
+
+<script>
+
+document.getElementById("form").onsubmit=function(e){
+
+e.preventDefault();
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+users.push({
+
+firstname: firstname.value,
+lastname: lastname.value,
+email: email.value,
+password: password.value,
+confirm: confirm.value,
+dob: dob.value,
+gender: gender.value,
+mobile: mobile.value,
+address: address.value,
+pincode: pincode.value
+
+});
+
+localStorage.setItem("users", JSON.stringify(users));
+
+window.location="user.html";
+
+};
+
+</script>
+
+</body>
+</html>
